@@ -106,21 +106,18 @@ function js_es6_icons(){
 
     let div_Str = `<div class="d-flex my-card m-2"></div> `;
     a_Icon.forEach((item, i) => {
-
         $("#myConsole").append(div_Str)
 
-        let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto text-primary"></i>`;
+        if (item.type == "user") {
+            let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-blu"></i>`;
+            $("#myConsole").children().eq(i).append(icon_Str)
+        }else if (item.type == "vegetable") {
+            let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-yellow"></i>`;
+            $("#myConsole").children().eq(i).append(icon_Str)
+        }else if (item.type == "animal") {
+            let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-purple"></i>`;
+            $("#myConsole").children().eq(i).append(icon_Str)
+        }
 
-        $("#myConsole").children().eq(i).append(icon_Str)
     });
-
-
-
-
-
-
-
-
-
-    console.log(a_Icon);
 }
