@@ -5,7 +5,7 @@ $(document).ready(function (){
 
 
 function js_es6_icons(){
-    a_Icon = [
+    const a_Icon = [
     	{
     		name: 'cat',
     		prefix: 'fa-',
@@ -104,20 +104,70 @@ function js_es6_icons(){
     	}
     ];
 
-    let div_Str = `<div class="d-flex my-card m-2"></div> `;
-    a_Icon.forEach((item, i) => {
-        $("#myConsole").append(div_Str)
-
-        if (item.type == "user") {
-            let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-blu"></i>`;
-            $("#myConsole").children().eq(i).append(icon_Str)
-        }else if (item.type == "vegetable") {
-            let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-yellow"></i>`;
-            $("#myConsole").children().eq(i).append(icon_Str)
-        }else if (item.type == "animal") {
-            let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-purple"></i>`;
-            $("#myConsole").children().eq(i).append(icon_Str)
-        }
-
+    // Copia elementi nel mio array All
+    const a_All = a_Icon.map((element) => {
+        return element;
     });
+
+    const a_Animal = a_Icon.filter((element) => {
+        if (element.type === "animal") {
+            return element;
+        }
+    });
+
+    const a_User = a_Icon.filter((element) => {
+        if (element.type === "user") {
+            return element;
+        }
+    });
+
+    const a_Vegetable = a_Icon.filter((element) => {
+        if (element.type === "vegetable") {
+            return element;
+        }
+    });
+
+
+
+    addIconTable(a_All);
+
+    $(`#iconSelect`).change(function(){
+        $("#myConsole").children().remove();
+        switch ($(this).val()) {
+
+            case "All":
+                addIconTable(a_All);
+                break;
+            case "animal":
+                addIconTable(a_Animal);
+                break;
+            case "vegetable":
+                addIconTable(a_Vegetable);
+                break;
+            case "user":
+                addIconTable(a_User);
+                break;
+            default:
+
+        }
+    });
+
+
+    function addIconTable(array){
+        array.forEach((item, i) => {
+            let div_Str = `<div class="d-flex my-card m-2"></div> `;
+            $("#myConsole").append(div_Str);
+
+            if (item.type == "user") {
+                let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-blu"></i>`;
+                $("#myConsole").children().eq(i).append(icon_Str)
+            }else if (item.type == "vegetable") {
+                let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-yellow"></i>`;
+                $("#myConsole").children().eq(i).append(icon_Str)
+            }else if (item.type == "animal") {
+                let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-purple"></i>`;
+                $("#myConsole").children().eq(i).append(icon_Str)
+            }
+        });
+    }
 }
