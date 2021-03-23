@@ -127,8 +127,7 @@ function js_es6_icons(){
         }
     });
 
-
-
+    // Riempimento iniziale conteiner con card All type
     addIconTable(a_All);
 
     $(`#iconSelect`).change(function(){
@@ -155,18 +154,26 @@ function js_es6_icons(){
 
     function addIconTable(array){
         array.forEach((item, i) => {
+            // Inizializzazione div card è aggiunta al dom
             let div_Str = `<div class="d-flex my-card m-2"></div> `;
             $("#myConsole").append(div_Str);
 
+            // Inizializzazione tag icon
+            let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto"></i>`;
+
+            // Aggiunta al dom del tag li con proprietà relative al proprio tipo
             if (item.type == "user") {
-                let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-blu"></i>`;
-                $("#myConsole").children().eq(i).append(icon_Str)
+                $("#myConsole").children().eq(i).append(icon_Str);
+                // Agginta classe color al tag <i> figlio del div appena creato
+                $("#myConsole").children().eq(i).children().addClass("color-blu");
             }else if (item.type == "vegetable") {
-                let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-yellow"></i>`;
-                $("#myConsole").children().eq(i).append(icon_Str)
+                $("#myConsole").children().eq(i).append(icon_Str);
+                // Agginta classe color al tag <i> figlio del div appena creato
+                $("#myConsole").children().eq(i).children().addClass("color-yellow");
             }else if (item.type == "animal") {
-                let icon_Str = `<i type="${item.type}" class="${item.family} ${item.prefix}${item.name} fa-3x m-auto color-purple"></i>`;
-                $("#myConsole").children().eq(i).append(icon_Str)
+                $("#myConsole").children().eq(i).append(icon_Str);
+                // Agginta classe color al tag <i> figlio del div appena creato
+                $("#myConsole").children().eq(i).children().addClass("color-purple");
             }
         });
     }
